@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import SearchBar from './Components/SearchBar/SearchBar.js';
-import SearchResults from './Components/SearchResults/SearchResults.js';
-import Playlist from './Components/Playlist/Playlist.js';
+import SearchBar from './components/SearchBar/SearchBar.js';
+import SearchResults from './components/SearchResults/SearchResults.js';
+import Playlist from './components/Playlist/Playlist.js';
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class App extends Component {
       playlistTracks: []
     };
   }
+
   render() {
     return (
       <div>
