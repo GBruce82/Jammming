@@ -11,7 +11,14 @@ class TrackList extends React.Component {
   render() {
     Return (
       <div className="TrackList">
-    <!-- You will add a map method that renders a set of Track components  -->
+// Instructions: In the TrackList component, use the .map() method to render each
+// track in the tracks property.  Set the key attribute to track.id.
+          {
+            this.props.tracks.map(track => <Track track={track} />)
+// HINT: Inside the TrackList component's render method, use .map() on
+// this.props.tracks to render each track in the list.  This will require you
+// to pass the current track as an attribute called track to the Track component.
+          }
       </div>
     );
   }

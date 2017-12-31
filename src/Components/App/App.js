@@ -6,6 +6,13 @@ import SearchResults from './Components/SearchResults/SearchResults.js';
 import Playlist from './Components/Playlist/Playlist.js';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchResults: []
+    };
+  }
   render() {
     return (
       <div>
@@ -13,7 +20,7 @@ class App extends Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults />
+            <SearchResults searchResults={this.state.searchResults}/>
             <Playlist />
           </div>
         </div>
