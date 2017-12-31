@@ -10,7 +10,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      searchResults: [],
+      searchResults: [
+        {
+          name: `Song Sung Blue`,
+          artist: `Neil Diamond`,
+          album: `Moods`
+        }
+      ],
       playlistName: ``,
       playlistTracks: []
     };
@@ -25,6 +31,10 @@ class App extends Component {
       tempList.push(track);
       this.setState({ playlistTracks: tempList });
     }
+  }
+
+  removeTrack(track) {
+
   }
 
   render() {
