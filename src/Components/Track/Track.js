@@ -13,6 +13,7 @@ renderAction() {
       return (<a className="Track-action" onClick={this.addTrack} > <+</a>);
   }
 
+//this method may need an event (e) added as a property;
   addTrack() {
     this.props.onAdd(this.props.track);
   }
