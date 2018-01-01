@@ -1,5 +1,5 @@
 import React from 'react';
-import Track from './Component/Track/Track.js';
+import Track from '../Track/Track.js';
 
 //  Again, does it matter that Track is imported before TrackList.css?
 import './TrackList.css';
@@ -9,15 +9,10 @@ import './TrackList.css';
 
 class TrackList extends React.Component {
   render() {
-    Return (
+    return (
       <div className="TrackList">
-// Instructions: In the TrackList component, use the .map() method to render each
-// track in the tracks property.  Set the key attribute to track.id.
           {
             this.props.tracks.map(track => <Track track={track} onAdd={this.props.onAdd} onRemove={this.props.onRemove} isRemoval={this.props.isRemoval}/>)
-// HINT: Inside the TrackList component's render method, use .map() on
-// this.props.tracks to render each track in the list.  This will require you
-// to pass the current track as an attribute called track to the Track component.
           }
       </div>
     );
@@ -25,3 +20,11 @@ class TrackList extends React.Component {
 }
 
 export default TrackList;
+
+// Instructions for this.props.tracks.map: In the TrackList component, use the
+// .map() method to render each track in the tracks property.
+//  Set the key attribute to track.id.
+
+// HINT: Inside the TrackList component's render method, use .map() on
+// this.props.tracks to render each track in the list.  This will require you
+// to pass the current track as an attribute called track to the Track component.
