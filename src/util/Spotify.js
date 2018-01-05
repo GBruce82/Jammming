@@ -34,7 +34,7 @@ const Spotify = {
   },
 
   search(searchTerm) {
-    const searchURL = `https://api.spotify.com/v1/search?type=track&q=${searchTerm}&limit=12`;
+    const searchURL = `https://api.spotify.com/v1/search?type=track&q=${searchTerm}&limit=50`;
     return fetch(searchURL, {headers: {Authorization: `Bearer ${accessToken}`}})
       .then(response => response.json())
         .then(jsonResponse => {
@@ -56,6 +56,45 @@ const Spotify = {
           return [];
       }
     );
+  },
+
+  savePlaylist(playlistName, trackURIs) {
+    if(!(playlistName && trackURIs))
+      return;
+
+    let header = {Authorization: `Bearer ${accessToken}`};
+
+    fetch(`https://api.spotify.com/v1/me`, {headers : header})
+      .then(response => response.json())
+        .then(jsonResponse => {
+          if(!jsonResponse.id)
+            return;
+
+              let userID = jsonResponse.id;
+
+              fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
+                headers: header,
+                method: `POST`,
+                body: JSON.stringify({name: playlistName})
+                }
+              )
+                .then(response => response.json())
+                  .then(jsonResponse => {
+                    if(!jsonResponse.id)
+                      return;
+
+                    let playlistID = jsonResponse.id;
+
+                    fetch(`https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`, {
+                      headers: header,
+                      method: `POST`,
+                      body: JSON.stringify({uris: trackURIs})
+                    }
+                  );
+                }
+              );
+        }
+      );
   }
 };
 
