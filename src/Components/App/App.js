@@ -35,23 +35,27 @@ class App extends React.Component {
   }
 
   removeTrack(track) {
-    let tracks = this.state.playlistTracks
-    tracks = tracks.filter(tr => tr.id !== track.id);
-    this.setState({ playlistTracks: tracks });
+  let index = this.state.playlistTracks.indexOf(track);
+
+  if(index >= 0) {
+    let tempList = this.state.playlistTracks.slice();
+    tempList.splice(index,1);
+    this.setState({ playlistTracks: tempList });
   }
+  else
+    console.log(`Error finding track ${track.name} in playlist.`);
+}
 
   updatePlaylistName(name) {
     this.setState({playlistName: name});
   }
 
   savePlaylist() {
-    const uris = this.state.playlistTracks.map(track => track.uri);
+    const list = this.state.playlistTracks.map(track => track.uri);
 
-    Spotify.savePlaylist(this.state.playlistName, uris)
-      .then(() => {
-          this.setState({ playlistTracks: [] })
-        }
-      );
+    Spotify.savePlaylist(this.state.playlistName, list);
+
+    this.setState({ playlistTracks: [], playlistName: `New Playlist` });
   }
 
   search(searchTerm) {
@@ -61,7 +65,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Ja<span className="highlight">mmm</span>ing</h1>
+        <h1>Ja<span className="highlight">mmmmmm</span>ing</h1>
         <div className="App">
           <SearchBar
             onSearch={this.search}
