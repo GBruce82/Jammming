@@ -1,4 +1,5 @@
 App: Jammming
+
 Created By: Greg Bruce (https://github.com/GBruce82/Jammming) in partial fulfillment of the requirements of Codecademy's "Build Front-End Web Apps" intensive course (https://www.codecademy.com/pro/intensive/build-frontend-web-apps-from-scratch).
 
 This program is music search app with the ability to save personal Playlists and send them to your Spotify account.  As it is built to work in conjunction with Spotify it will require the user to obtain a Spotify Account with Client ID.
