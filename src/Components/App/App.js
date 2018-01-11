@@ -16,11 +16,11 @@ class App extends React.Component {
       playlistTracks: []
     };
 
-    this.addTrack = this.addTrack.bind(this);
-    this.removeTrack = this.removeTrack.bind(this);
+    this.addTrack           = this.addTrack.bind(this);
+    this.removeTrack        = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
-    this.savePlaylist = this.savePlaylist.bind(this);
-    this.search = this.search.bind(this);
+    this.savePlaylist       = this.savePlaylist.bind(this);
+    this.search             = this.search.bind(this);
 
     Spotify.getAccessToken();
   }
@@ -35,15 +35,9 @@ class App extends React.Component {
   }
 
   removeTrack(track) {
-    let index = this.state.playlistTracks.indexOf(track);
-
-    if(index >= 0) {
-      let tempList = this.state.playlistTracks.slice();
-      tempList.splice(index,1);
-      this.setState({playlistTracks: tempList});
-    }
-    else
-      console.log(`Track ${track.name} not found in Playlist. Add track or try another track.`);
+    let tracks = this.state.playlistTracks
+    tracks = tracks.filter(tr => tr.id !== track.id);
+    this.setState({ playlistTracks: tracks });
   }
 
   updatePlaylistName(name) {
@@ -51,9 +45,13 @@ class App extends React.Component {
   }
 
   savePlaylist() {
-    const savedList = this.state.playlistTracks.map(track => track.uri);
-    Spotify.savePlaylist(this.state.playlistName, savedList);
-    this.setState({playlistTracks: []});
+    const uris = this.state.playlistTracks.map(track => track.uri);
+
+    Spotify.savePlaylist(this.state.playlistName, uris)
+      .then(() => {
+          this.setState({ playlistTracks: [] })
+        }
+      );
   }
 
   search(searchTerm) {

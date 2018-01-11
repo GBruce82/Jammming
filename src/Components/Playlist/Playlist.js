@@ -1,9 +1,8 @@
 import React from 'react';
-import TrackList from '../TrackList/TrackList.js';
-//Does it matter if TrackList is first or Playlist?
 import './Playlist.css';
 
-//need to export this class?  Not in the instructions (yet?)
+import TrackList from '../TrackList/TrackList.js';
+
 export class Playlist extends React.Component {
   constructor(props) {
     super(props);
